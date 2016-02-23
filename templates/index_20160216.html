@@ -1,0 +1,157 @@
+{% extends "layouts/layout1.html" %}
+{% block title %}
+Our  Custom Title
+{% endblock %}
+
+{% block content %}
+<body  style="padding-top: 120px;">
+     <div id="content">
+         <div id="left">
+         <form method="post" action="/post_birim">
+               <label>Birim Adı:</label>
+               <input id="birim_adi" name="birim_adi" type="text" />
+               <input type="submit" />
+           </form>
+        {% for user in birim %}
+                <li>{{user.id}}-{{user.birim_adi}}-</li>
+           {% endfor %}
+        </div>
+
+        <div id="left">
+         <form method="post" action="/post_isteksahibi">
+               <label>İstek Sahibi Birim ID:</label>
+               <select id="isteksahibi_birim_id" name="isteksahibi_birim_id">
+               {% for item in birim %}
+                   <option value="{{item.id}}">{{item.birim_adi}}</option>
+               {% endfor %}
+               </select>
+               <label>İstek Sahibi Adı:</label>
+               <input id="isteksahibi_adi" name="isteksahibi_adi" type="text" />
+               <label>İstek Sahibi Soyadı:</label>
+               <input id="isteksahibi_soyadi" name="isteksahibi_soyadi" type="text" />
+             <input type="submit" />
+
+         </form>
+        {% for user in istekSahibi %}
+                <li>{{user.id}}-{{user.birim_adi}}-{{user.adi}}-{{user.soyadi}}</li>
+        {% endfor %}
+         </div>
+
+         <!-- This part create drop-down selectionlist-->
+         <div>
+         <form method="post" action="/post_birim">
+             <select name="birim_adi">
+             {% for p in birim %}
+                <option value="{{ p.birim_adi }}">{{ p.birim_adi }}</option>
+             {% endfor %}
+             </select>
+             <input type="submit" />
+          </form>
+          </div>
+     </div>
+     <div id="left">
+         <form method="post" action="/post_veriformat">
+               <label>Veri Format Adı:</label>
+               <input id="veriformat_adi" name="veriformat_adi" type="text" />
+               <label>Veri Format Kodu:</label>
+               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
+             <input type="submit" />
+         </form>
+     </div>
+     {% for user in veriFormat %}
+                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
+     {% endfor %}
+
+
+      <div id="left">
+         <form method="post" action="/post_verikoordinat">
+               <label>Veri Koordinat ID:</label>
+               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
+               <label>Veri Koordinat Adı:</label>
+               <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" />
+               <label>Veri Koordinat Kodu:</label>
+               <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" />
+             <input type="submit" />
+         </form>
+      </div>
+      {% for user in veriKoordinat %}
+                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
+     {% endfor %}
+
+
+
+     <div id="left">
+         <form method="post" action="/post_istek">
+               <label>İstek Sahibi ID:</label>
+               <input id="isteksahibi_id" name="isteksahibi_id" type="text" />
+               <label>İstek Adı:</label>
+               <input id="istek_adi" name="istek_adi" type="text" />
+               <label>Veri Format ID</label>
+               <input id="veriformat_id" name="veriformat_id" type="text" />
+               <label>Veri Koordinat ID:</label>
+               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
+               <label>İs Talep Tarihi:</label>
+               <input id="istektalep_tarihi" name="istektalep_tarihi" type="text" />
+               <label>İs Teslim Tarihi:</label>
+               <input id="istekteslim_tarihi" name="istekteslim_tarihi" type="text" />
+               <label>İs Açıklama:</label>
+               <input id="istekaciklama" name="istekaciklama" type="text" />
+               <label>İs Veri Yolu:</label>
+               <input id="istekveriyolu" name="istekveriyolu" type="text" />
+               <input type="submit" />
+
+         </form>
+
+         </div>
+        {% for user in istek %}
+                <li>{{user.id}}-{{user.adi}}-{{user.isteksahibi_id}}-{{user.verikooridinat_id}}-{{user.istektalep_tarihi}}</li>
+        {% endfor %}
+
+
+        <div id="left">
+         <form method="post" action="/post_istek">
+               <label>İstek Sahibi ID:</label>
+               <select id="isteksahibi_id" name="isteksahibi_id">
+               {% for user in istekSahibi %}
+                   <option value="{{user.id}}">{{user.adi}}-{{user.soyadi}}</option>
+               {% endfor %}
+               </select>
+
+               <label>İstek Adı:</label>
+               <input id="istek_adi" name="istek_adi" type="text" />
+
+               <label>Veri Format ID</label>
+               <select id="veriformat_id" name="veriformat_id">
+               {% for item in veriFormat %}
+                   <option value="{{item.id}}">{{item.adi}}-{{item.kodu}}</option>
+               {% endfor %}
+               </select>
+
+               <label>Veri Koordinat ID:</label>
+               <select id="verikoordinat_id" name="verikoordinat_id">
+               {% for item in veriKoordinat %}
+                   <option value="{{item.id}}">{{item.adi}}-{{item.kodu}}</option>
+               {% endfor %}
+               </select>
+               <label>İs Talep Tarihi:</label>
+               <input id="istektalep_tarihi" name="istektalep_tarihi" type="text" />
+               <label>İs Teslim Tarihi:</label>
+               <input id="istekteslim_tarihi" name="istekteslim_tarihi" type="text" />
+               <label>İs Açıklama:</label>
+               <input id="istekaciklama" name="istekaciklama" type="text" />
+               <label>İs Veri Yolu:</label>
+               <input id="istekveriyolu" name="istekveriyolu" type="text" />
+               <input type="submit" />
+
+         </form>
+
+         </div>
+        {% for user in istek %}
+                <li>{{user.id}}-{{user.adi}}-{{user.isteksahibi_id}}-{{user.verikooridinat_id}}-{{user.istektalep_tarihi}}</li>
+        {% endfor %}
+
+   </div>
+
+
+</body>
+{% endblock %}
