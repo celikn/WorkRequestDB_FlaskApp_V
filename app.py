@@ -160,6 +160,48 @@ def delete_birim(id):
 def edit_isteksahibi(id):
     birim=Birim.query.all() #birim secimi için
     isteksahibi=IstekSahibi.query.all()
+    istekSelectedWithID=db.session.query(Istek).filter(Istek.id==id).first()
+    #birimtest=str(db.session.query(Birim).filter(Birim.id == id).first())
+    #print (birimtest)
+    if request.method == 'POST':
+          adi = request.form['istekSelectedWithID_adi']
+          istekSelectedWithID.adi = adi
+          isteksahibi_id = request.form['istekSelectedWithID_isteksahibi_id']
+          istekSelectedWithID.isteksahibi_id = isteksahibi_id
+          veriformat_id = request.form['istekSelectedWithID_veriformat_id']
+          istekSelectedWithID.veriformat_id = veriformat_id
+          verikoordinat_id = request.form['istekSelectedWithID_verikoordinat_id']
+          istekSelectedWithID.verikoordinat_id = verikoordinat_id
+          istektalep_tarihi = request.form['istekSelectedWithID_istektalep_tarihi']
+          istekSelectedWithID.istektalep_tarihi = istektalep_tarihi
+          istekteslim_tarihi = request.form['istekSelectedWithID_istekteslim_tarihi']
+          istekSelectedWithID.istekteslim_tarihi = istekteslim_tarihi
+          istekaciklama = request.form['istekSelectedWithID_istekaciklama']
+          istekSelectedWithID.istekaciklama = istekaciklama
+          istekveriyolu = request.form['istekSelectedWithID_istekveriyolu']
+          istekSelectedWithID.istekveriyolu = istekveriyolu
+          db.session.commit()
+          return render_template('isteksahibiprofile.html',birim=birim,isteksahibi=isteksahibi,istekSelectedWithID=istekSelectedWithID,id = id)
+    else:
+        return render_template('isteksahibiprofile.html',birim=birim,isteksahibi=isteksahibi,istekSelectedWithID=istekSelectedWithID,id = id)
+
+
+@app.route('/delete_isteksahibi/<id>',methods = ['POST'])
+def delete_isteksahibi(id):
+    if request.method == 'POST':
+         IstekSahibi.query.filter(IstekSahibi.id == id).delete()
+         db.session.commit()
+         flash('Entry was deleted')
+         return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+
+
+@app.route('/edit_istek/<id>',methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
+def edit_istek(id):
+    birim=Birim.query.all() #birim secimi için
+    isteksahibi=IstekSahibi.query.all()
     istekSahibiSelectedWithID=db.session.query(IstekSahibi).filter(IstekSahibi.id==id).first()
     #birimtest=str(db.session.query(Birim).filter(Birim.id == id).first())
     #print (birimtest)
@@ -176,17 +218,15 @@ def edit_isteksahibi(id):
         return render_template('isteksahibiprofile.html',birim=birim,isteksahibi=isteksahibi,istekSahibiSelectedWithID=istekSahibiSelectedWithID,id = id)
 
 
-@app.route('/delete_isteksahibi/<id>',methods = ['POST'])
-def delete_isteksahibi(id):
+@app.route('/delete_istek/<id>',methods = ['POST'])
+def delete_istek(id):
     if request.method == 'POST':
-         IstekSahibi.query.filter(IstekSahibi.id == id).delete()
+         Istek.query.filter(Istek.id == id).delete()
          db.session.commit()
          flash('Entry was deleted')
          return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
-
-
 
 
 
