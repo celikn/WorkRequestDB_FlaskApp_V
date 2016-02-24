@@ -28,7 +28,6 @@ Our  Custom Title
         }
         */
 
-
         $(function(){
             $("#chkbtn").on('click',function() {
                 $(this).hide();
@@ -51,7 +50,40 @@ Our  Custom Title
              text-align:left;
 		}
     </style>
+
+    <script>
+    function show() {
+        if(document.getElementById('benefits').style.display=='none') {
+            document.getElementById('benefits').style.display='block';
+        }
+        return false;
+    }
+    function hide() {
+        if(document.getElementById('benefits').style.display=='block') {
+            document.getElementById('benefits').style.display='none';
+        }
+        return false;
+    }
+    </script>
+
     </head>
+
+
+
+
+ <div id="opener"><a href="#1" name="1" onclick="return show();">Birim Listesini Göster</a></div>
+    <div id="benefits" style="display:none;">
+           {% for item in birim %}
+
+                <li class="list-group-item">{{item.id}}-{{item.birim_adi}}- <a href="/edit_birim/{{item.id}}"><button  type="button">Düzenle/Sil</button></a> </li>
+           {% endfor %}
+
+           <div id="upbutton"><a onclick="return hide();">Birim Listesini Gösterme</a></div>
+
+    </div>
+
+
+
 
 
 
