@@ -7,13 +7,25 @@
 
 <body style="padding-top: 120px;" >
 
-    <h2> {{birimSelectedWithID.birim_adi}}-Düzenleme</h2>
+    <h2> {{istekSahibiSelectedWithID.adi}} {{istekSahibiSelectedWithID.soyadi}}-Düzenleme</h2>
     <div div style = font-size:20px>
             <form  method="post" action="/edit_isteksahibi/{{id}}">
             <label>Yeni İstek Sahibi Adı Gir:</label>
             <input id="istekSahibiSelectedWithID_adi" name="istekSahibiSelectedWithID_adi" value={{istekSahibiSelectedWithID.adi}} type="text" />
             <label>Yeni İstek Sahibi Soyadi Gir:</label>
             <input id="istekSahibiSelectedWithID_soyadi" name="istekSahibiSelectedWithID_soyadi" value={{istekSahibiSelectedWithID.soyadi}} type="text" />
+            <label>Yeni İstek Sahibi Birim ID Gir:</label>
+            <!--Bu biirm seçimi sağlar tek bir id için aşağıdaki commente bakınız-->
+            <label>İstek Sahibi Birim ID:</label>
+               <select id="istekSahibiSelectedWithID_birim_id" name="istekSahibiSelectedWithID_birim_id">
+               {% for item in birim %}
+                   <option value="{{item.id}}">{{item.birim_adi}}</option>
+               {% endfor %}
+               </select>
+
+            <!--<input id="istekSahibiSelectedWithID_birim_id" name="istekSahibiSelectedWithID_birim_id" value={{istekSahibiSelectedWithID.birim_id}} type="text" />
+            -->
+
             <input type="submit" value="Ekle" />
             </form>
     </div>

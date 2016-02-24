@@ -17,27 +17,6 @@ Our  Custom Title
 <!--http://stackoverflow.com/questions/16903605/hide-button-after-click-with-existing-form-on-page-->
 
  <head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script>
-        /*
-
-        if you prefer to functionize and use onclick= rather then the .on bind
-        function hide_show(){
-            $(this).hide();
-            $("#hidden-div").show();
-        }
-        */
-
-        $(function(){
-            $("#chkbtn").on('click',function() {
-                $(this).hide();
-                $("#hidden-div").show();
-            });
-        });
-    </script>
-
-
-
     <style>
     .hidden-div {
         display:none
@@ -51,33 +30,14 @@ Our  Custom Title
 		}
     </style>
 
-    <script>
-    function show() {
-        if(document.getElementById('benefits').style.display=='none') {
-            document.getElementById('benefits').style.display='block';
-        }
-        return false;
-    }
-    function hide() {
-        if(document.getElementById('benefits').style.display=='block') {
-            document.getElementById('benefits').style.display='none';
-        }
-        return false;
-    }
+    <!-- Script Source: http://www.randomsnippets.com/2011/04/10/how-to-hide-show-or-toggle-your-div-with-jquery/-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript">
 
-        function show() {
-        if(document.getElementById('benefits2').style.display=='none') {
-            document.getElementById('benefits2').style.display='block';
-        }
-        return false;
-    }
-    function hide() {
-        if(document.getElementById('benefits2').style.display=='block') {
-            document.getElementById('benefits2').style.display='none';
-        }
-        return false;
-    }
-    </script>
+        function toggleDiv(divId) {
+               $("#"+divId).toggle();
+            }
+</script>
 
     </head>
 
@@ -86,15 +46,12 @@ Our  Custom Title
 
 <body  style="padding-top: 120px;">
      <!--Birim Listesi-->
-    <div id="opener"><a href="#1" name="1" onclick="return show();">Birim Listesini Göster</a></div>
-    <div id="benefits" style="display:none;">
-           {% for item in birim %}
+    <a href="javascript:toggleDiv('birimdiv');" style="padding: 5px 10px;">Birim Listesini Göster/Kapat</a>
+    <div id="birimdiv" style="display:none;">
+               {% for item in birim %}
 
                 <li class="list-group-item">{{item.id}}-{{item.birim_adi}}- <a href="/edit_birim/{{item.id}}"><button  type="button">Düzenle/Sil</button></a> </li>
            {% endfor %}
-
-           <div id="upbutton"><a onclick="return hide();">Birim Listesini Gösterme</a></div>
-
     </div>
 
     <!--
@@ -119,14 +76,11 @@ Our  Custom Title
 
        <!--İstek Sahibi Listesi-->
 
-        <div id="opener"><a href="#1" name="1" onclick="return show();">İstek Sahibi Listesi Göster</a></div>
-        <div id="benefits2" style="display:none;">
+        <a href="javascript:toggleDiv('isteksahibidiv');" style="" padding: 5px 10px;">İstek Sahibi Listesi Göster/Kapat</a>
+        <div id="isteksahibidiv" style="display:none;">
           {% for item in istekSahibi %}
-                <li class="list-group-item">{{item.id}}-{{item.birim_adi}}-{{item.adi}}-{{item.soyadi}}-<a href="/edit_isteksahibi/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
+                <li class="list-group-item">{{item.id}}-{{item.birim_id}}-{{item.adi}}-{{item.soyadi}}-<a href="/edit_isteksahibi/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
         {% endfor %}
-
-           <div id="upbutton"><a onclick="return hide();">İstek Sahibi Listesini Gösterme</a></div>
-
         </div>
 
 
@@ -141,7 +95,7 @@ Our  Custom Title
         //-->
 
          <!--İstek Sahibi Ekleme-->
-        <div id="left">
+        <div>
          <form method="post" action="/post_isteksahibi">
                <label>İstek Sahibi Birim ID:</label>
                <select id="isteksahibi_birim_id" name="isteksahibi_birim_id">
@@ -156,7 +110,6 @@ Our  Custom Title
              <input type="submit" value="Ekle" />
 
          </form>
-
 
 
          </div>
