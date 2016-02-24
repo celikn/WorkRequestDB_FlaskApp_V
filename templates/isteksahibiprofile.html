@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layouts/profilelayout.html" %}
+{% block title %}
+İstek Sahibi Profili
+{% endblock %}
+
+{% block content %}
+
+<body style="padding-top: 120px;" >
+
+    <h2> {{birimSelectedWithID.birim_adi}}-Düzenleme</h2>
+    <div div style = font-size:20px>
+            <form  method="post" action="/edit_isteksahibi/{{id}}">
+            <label>Yeni İstek Sahibi Adı Gir:</label>
+            <input id="istekSahibiSelectedWithID_adi" name="istekSahibiSelectedWithID_adi" value={{istekSahibiSelectedWithID.adi}} type="text" />
+            <label>Yeni İstek Sahibi Soyadi Gir:</label>
+            <input id="istekSahibiSelectedWithID_soyadi" name="istekSahibiSelectedWithID_soyadi" value={{istekSahibiSelectedWithID.soyadi}} type="text" />
+            <input type="submit" value="Ekle" />
+            </form>
+    </div>
+
+    <h2 style="color:red;"> {{istekSahibiSelectedWithID.adi}} {{istekSahibiSelectedWithID.soyadi}} -Silme</h2>
+    <div id="sil">
+             <form action="{{ url_for('delete_isteksahibi', id=id ) }}" method="POST">
+                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+                <input type="submit" value="Sil -- {{istekSahibiSelectedWithID.adi}} {{istekSahibiSelectedWithID.soyadi}} "/>
+             </form>
+
+    </div>
+
 
 </body>
-</html>
+{% endblock %}
