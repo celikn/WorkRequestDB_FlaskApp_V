@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Profile| {{birimSelectedWithID.birim_adi}}</title>
+{% extends "layouts/profilelayout.html" %}
+{% block title %}
+Birim Profil
+{% endblock %}
 
-    <script>
-        function ConfirmDelete()
-        {
-             var x = confirm("Are you sure you want to delete?");
-             if (x)
-                return true;
-             else
-                return false;
-}
+{% block content %}
 
-    </script>
-
-</head>
-<body>
-
-
+<body style="padding-top: 120px;" >
 
     <h2> {{birimSelectedWithID.birim_adi}}-Düzenleme</h2>
-    <div>
+    <div div style = font-size:20px; font-weight:bold; margin-left:150px;>
             <form  method="post" action="/edit_birim/{{id}}">
             <label>Yeni Birim Adı Gir:</label>
             <input id="birimwithidadi" name="birimwithidadi" value={{birimSelectedWithID.birim_adi}} type="text" />
@@ -41,4 +27,4 @@
 
 
 </body>
-</html>
+{% endblock %}

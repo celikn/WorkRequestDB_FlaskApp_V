@@ -158,6 +158,11 @@ def delete_birim(id):
 
 
 
+
+
+
+
+
 @app.route('/post_isteksahibi', methods=['POST'])
 def post_isteksahibi():
      istekSahibi=IstekSahibi(request.form['isteksahibi_birim_id'],request.form['isteksahibi_adi'],request.form['isteksahibi_soyadi'])
