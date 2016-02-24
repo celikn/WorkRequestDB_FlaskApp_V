@@ -70,7 +70,6 @@ Our  Custom Title
 
 
 
-
  <div id="opener"><a href="#1" name="1" onclick="return show();">Birim Listesini Göster</a></div>
     <div id="benefits" style="display:none;">
            {% for item in birim %}
@@ -98,20 +97,18 @@ Our  Custom Title
 
         <span><button id="chkbtn">Birim Listesi</button></span>
         <div class="hidden-div" id="hidden-div">
-
             {% for item in birim %}
-
                 <li class="list-group-item">{{item.id}}-{{item.birim_adi}}- <a href="/edit_birim/{{item.id}}"><button  type="button">Düzenle/Sil</button></a> </li>
            {% endfor %}
         </div>
 
         </div>
         <div >
+        {% for user in istekSahibi %}
+                <li>{{user.id}}-{{user.birim_adi}}-{{user.adi}}-{{user.soyadi}}</li>
+        {% endfor %}
 
         </div>
-
-
-
 
         <div id="left">
          <form method="post" action="/post_isteksahibi">
@@ -129,9 +126,7 @@ Our  Custom Title
 
          </form>
 
-        {% for user in istekSahibi %}
-                <li>{{user.id}}-{{user.birim_adi}}-{{user.adi}}-{{user.soyadi}}</li>
-        {% endfor %}
+
 
          </div>
 

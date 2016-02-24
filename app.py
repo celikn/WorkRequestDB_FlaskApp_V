@@ -139,14 +139,9 @@ def edit_birim(id):
     #print (birimtest)
     if request.method == 'POST':
           adi = request.form['birimwithidadi']
-          print("veri geldi", adi)
           birimSelectedWithID.birim_adi = adi
           db.session.commit()
           return render_template('birimprofile.html',birim=birim,birimSelectedWithID=birimSelectedWithID,id = id)
-    elif request.method == 'DELETE':
-         Birim.query.filter(Birim.id == id).delete()
-         db.session.commit()
-         return redirect(url_for('index'))
     else:
         return render_template('birimprofile.html',birim=birim,birimSelectedWithID=birimSelectedWithID,id = id)
 

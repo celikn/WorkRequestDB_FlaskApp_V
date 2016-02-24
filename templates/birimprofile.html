@@ -25,7 +25,7 @@
     <div>
             <form  method="post" action="/edit_birim/{{id}}">
             <label>Yeni Birim Adı Gir:</label>
-            <input id="birimwithidadi" name="birimwithidadi" type="text" />
+            <input id="birimwithidadi" name="birimwithidadi" value={{birimSelectedWithID.birim_adi}} type="text" />
             <input type="submit" value="Ekle" />
             </form>
     </div>
@@ -36,8 +36,6 @@
                 <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
                 <input type="submit" value="Sil -- {{birimSelectedWithID.birim_adi}}" />
              </form>
-
-
 
     </div>
 
