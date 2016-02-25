@@ -1,0 +1,34 @@
+{% extends "layouts/profilelayout.html" %}
+{% block title %}
+Veri Format Profil
+{% endblock %}
+
+{% block content %}
+
+<body style="padding-top: 120px;" >
+
+    <h2> {{veriKoordinatSelectedWithID.adi}}-Düzenleme</h2>
+    <div div style = font-size:20px; font-weight:bold; margin-left:150px;>
+            <form  method="post" action="/edit_verikoordinat/{{id}}">
+            <label>Yeni Veri Koordinat ID Gir:</label>
+            <input id="veriKoordinatSelectedWithID_id" name="veriKoordinatSelectedWithID_id" value={{veriKoordinatSelectedWithID.id}} type="text" />
+            <label>Yeni Veri Koordinat Adı Gir:</label>
+            <input id="veriKoordinatSelectedWithID_adi" name="veriKoordinatSelectedWithID_adi" value={{veriKoordinatSelectedWithID.adi}} type="text" />
+            <label>Yeni Veri Koordinat Kodu Gir:</label>
+            <input id="veriKoordinatSelectedWithID_kodu" name="veriKoordinatSelectedWithID_kodu" value={{veriKoordinatSelectedWithID.kodu}} type="text" />
+            <input type="submit" value="Ekle" />
+            </form>
+    </div>
+
+    <h2 style="color:red;"> {{veriKoordinatSelectedWithID.adi}}-Silme</h2>
+    <div id="sil">
+             <form action="{{ url_for('delete_verikoordinat', id=id ) }}" method="POST">
+                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+                <input type="submit" value="Sil -- {{veriKoordinatSelectedWithID.adi}}" />
+             </form>
+
+    </div>
+
+
+</body>
+{% endblock %}

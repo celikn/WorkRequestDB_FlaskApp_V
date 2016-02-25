@@ -260,6 +260,39 @@ def delete_veriformat(id):
 
 ################################################################
 
+
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@app.route('/edit_verikoordinat/<id>',methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
+def edit_verikoordinat(id):
+    birim=Birim.query.all()
+    veriKoordinatSelectedWithID=db.session.query(VeriKoordinat).filter(VeriKoordinat.id==id).first()
+    #birimtest=str(db.session.query(Birim).filter(Birim.id == id).first())
+    #print (birimtest)
+    if request.method == 'POST':
+          id = request.form['veriKoordinatSelectedWithID_id']
+          veriKoordinatSelectedWithID.adi = id
+          adi = request.form['veriKoordinatSelectedWithID_adi']
+          veriKoordinatSelectedWithID.adi = adi
+          kodu = request.form['veriKoordinatSelectedWithID_kodu']
+          veriKoordinatSelectedWithID.kodu = kodu
+          db.session.commit()
+          return render_template('verikoordinatprofile.html',veriKoordinatSelectedWithID=veriKoordinatSelectedWithID,id = id)
+    else:
+        return render_template('verikoordinatprofile.html',veriKoordinatSelectedWithID=veriKoordinatSelectedWithID,id = id)
+
+@app.route('/delete_verikoordinat/<id>',methods = ['POST'])
+def delete_verikoordinat(id):
+    if request.method == 'POST':
+         VeriKoordinat.query.filter(VeriKoordinat.id == id).delete()
+         db.session.commit()
+         flash('Entry was deleted')
+         return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+################################################################
+
+
 @app.route('/post_isteksahibi', methods=['POST'])
 def post_isteksahibi():
      istekSahibi=IstekSahibi(request.form['isteksahibi_birim_id'],request.form['isteksahibi_adi'],request.form['isteksahibi_soyadi'])
