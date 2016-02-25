@@ -191,7 +191,9 @@ def delete_isteksahibi(id):
 @app.route('/edit_istek/<id>',methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
 def edit_istek(id):
     birim=Birim.query.all() #birim secimi için
-    isteksahibi=IstekSahibi.query.all()
+    istekSahibi=IstekSahibi.query.all()
+    veriFormat=VeriFormat.query.all()
+    veriKoordinat=VeriKoordinat.query.all()
     istekSelectedWithID=db.session.query(Istek).filter(Istek.id==id).first()
     #birimtest=str(db.session.query(Birim).filter(Birim.id == id).first())
     #print (birimtest)
@@ -213,9 +215,9 @@ def edit_istek(id):
           istekveriyolu = request.form['istekSelectedWithID_istekveriyolu']
           istekSelectedWithID.istekveriyolu = istekveriyolu
           db.session.commit()
-          return render_template('istekprofile.html',birim=birim,isteksahibi=isteksahibi,istekSelectedWithID=istekSelectedWithID,id = id)
+          return render_template('istekprofile.html',veriKoordinat=veriKoordinat,veriFormat=veriFormat,birim=birim,istekSahibi=istekSahibi,istekSelectedWithID=istekSelectedWithID,id = id)
     else:
-        return render_template('istekprofile.html',birim=birim,isteksahibi=isteksahibi,istekSelectedWithID=istekSelectedWithID,id = id)
+        return render_template('istekprofile.html',veriKoordinat=veriKoordinat,veriFormat=veriFormat,birim=birim,istekSahibi=istekSahibi,istekSelectedWithID=istekSelectedWithID,id = id)
 
 
 @app.route('/delete_istek/<id>',methods = ['POST'])

@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layouts/profilelayout.html" %}
+{% block title %}
+İstek Sahibi Profili
+{% endblock %}
+
+{% block content %}
+
+<body style="padding-top: 120px;" >
+
+    <h2> {{istekSelectedWithID.adi}} -Düzenleme</h2>
+    <div div style = font-size:20px>
+            <form  method="post" action="/edit_isteksahibi/{{id}}">
+            <label>Yeni İstek Adı Gir:</label>
+            <input id="istekSelectedWithID_adi" name="istekSelectedWithID_adi" value={{istekSelectedWithID.adi}} type="text" />
+            <label>Yeni İstek Sahibi ID:</label>
+            <!--<input id="istekSelectedWithID_isteksahibi_id" name="istekSelectedWithID_isteksahibi_id" value={{istekSelectedWithID.isteksahibi_id}} type="text" />-->
+            <select id="istekSelectedWithID_isteksahibi_id" name="istekSelectedWithID_isteksahibi_id">
+               {% for item in istekSahibi %}
+                   <option value="{{item.id}}">{{item.isteksahibi_id}}-{{item.soyadi}}</option>
+               {% endfor %}
+            </select>
+            <label>Yeni Veri Format:</label>
+            <!--<input id="istekSelectedWithID_verikoordinat_id" name="istekSelectedWithID_verikoordinat_id" value={{istekSelectedWithID.veriformat_id}} type="text" />-->
+             <select id="istekSelectedWithID_veriformat_id" name="istekSelectedWithID_veriformat_id">
+               {% for item in veriFormat %}
+                   <option value="{{item.id}}">{{item.adi}}-{{item.kodu}}</option>
+               {% endfor %}
+               </select>
+             <label>Yeni Veri Koordinat:</label>
+               <select id="istekSelectedWithID_verikoordinat_id" name="istekSelectedWithID_verikoordinat_id">
+               {% for item in veriKoordinat %}
+                   <option value="{{item.id}}">{{item.adi}}-{{item.kodu}}</option>
+               {% endfor %}
+               </select>
+               <label>Yeni İs İstek Talep Tarihi:</label>
+               <input id="istekSelectedWithID_istektalep_tarihi" name="istekSelectedWithID_istektalep_tarihi" value={{istekSelectedWithID.istektalep_tarihi }} type="text" />
+               <label>Yeni İs İstek Teslim Tarihi:</label>
+               <input id="istekSelectedWithID_istekteslim_tarihi" name="istekSelectedWithID_istekteslim_tarihi" value={{istekSelectedWithID.istekteslim_tarihi }} type="text" />
+               <label>Yeni İs İstek Açıklama:</label>
+               <input id="istekSelectedWithID_istekaciklama" name="istekSelectedWithID_istekaciklama" value={{istekSelectedWithID.istekaciklama }} type="text" />
+               <label>Yeni İs İstek Veri Yolu:</label>
+               <input id="istekSelectedWithID_istekveriyolu" name="istekSelectedWithID_istekveriyolu" value={{istekSelectedWithID.istekveriyolu }} type="text" />
+
+
+
+            <input type="submit" value="Ekle" />
+            </form>
+    </div>
+
+    <h2 style="color:red;"> {{istekSelectedWithID.id}} {{istekSelectedWithID.adı}} -Silme</h2>
+    <div id="sil">
+             <form action="{{ url_for('delete_istek', id=id ) }}" method="POST">
+                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+                <input type="submit" value="Sil -- {{istekSelectedWithID.adi}} "/>
+             </form>
+
+    </div>
+
 
 </body>
-</html>
+{% endblock %}

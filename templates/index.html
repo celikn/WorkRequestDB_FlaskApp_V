@@ -37,7 +37,7 @@ Our  Custom Title
         function toggleDiv(divId) {
                $("#"+divId).toggle();
             }
-</script>
+    </script>
 
     </head>
 
@@ -76,7 +76,7 @@ Our  Custom Title
 
        <!--İstek Sahibi Listesi-->
 
-        <a href="javascript:toggleDiv('isteksahibidiv');" style="" padding: 5px 10px;">İstek Sahibi Listesi Göster/Kapat</a>
+        <a href="javascript:toggleDiv('isteksahibidiv');" style="padding: 5px 10px;">İstek Sahibi Listesi Göster/Kapat</a>
         <div id="isteksahibidiv" style="display:none;">
           {% for item in istekSahibi %}
                 <li class="list-group-item">{{item.id}}-{{item.birim_id}}-{{item.adi}}-{{item.soyadi}}-<a href="/edit_isteksahibi/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
@@ -110,82 +110,20 @@ Our  Custom Title
              <input type="submit" value="Ekle" />
 
          </form>
-
-
          </div>
 
-         <!-- This part create drop-down selectionlist-->
-         <div>
-         <form method="post" action="/post_birim">
-             <select name="birim_adi">
-             {% for p in birim %}
-                <option value="{{ p.birim_adi }}">{{ p.birim_adi }}</option>
-             {% endfor %}
-             </select>
-             <input type="submit" />
-          </form>
-          </div>
-     </div>
-     <div id="left">
-         <form method="post" action="/post_veriformat">
-               <label>Veri Format Adı:</label>
-               <input id="veriformat_adi" name="veriformat_adi" type="text" />
-               <label>Veri Format Kodu:</label>
-               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
-             <input type="submit" />
-         </form>
-     </div>
-     {% for user in veriFormat %}
-                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
-     {% endfor %}
+         <!--İstek Listesi-->
 
-
-      <div id="left">
-         <form method="post" action="/post_verikoordinat">
-               <label>Veri Koordinat ID:</label>
-               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
-               <label>Veri Koordinat Adı:</label>
-               <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" />
-               <label>Veri Koordinat Kodu:</label>
-               <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" />
-             <input type="submit" />
-         </form>
-      </div>
-      {% for user in veriKoordinat %}
-                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
-     {% endfor %}
-
-
-
-     <div id="left">
-         <form method="post" action="/post_istek">
-               <label>İstek Sahibi ID:</label>
-               <input id="isteksahibi_id" name="isteksahibi_id" type="text" />
-               <label>İstek Adı:</label>
-               <input id="istek_adi" name="istek_adi" type="text" />
-               <label>Veri Format ID</label>
-               <input id="veriformat_id" name="veriformat_id" type="text" />
-               <label>Veri Koordinat ID:</label>
-               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
-               <label>İs Talep Tarihi:</label>
-               <input id="istektalep_tarihi" name="istektalep_tarihi" type="text" />
-               <label>İs Teslim Tarihi:</label>
-               <input id="istekteslim_tarihi" name="istekteslim_tarihi" type="text" />
-               <label>İs Açıklama:</label>
-               <input id="istekaciklama" name="istekaciklama" type="text" />
-               <label>İs Veri Yolu:</label>
-               <input id="istekveriyolu" name="istekveriyolu" type="text" />
-               <input type="submit" />
-
-         </form>
-
-         </div>
-        {% for user in istek %}
-                <li>{{user.id}}-{{user.adi}}-{{user.isteksahibi_id}}-{{user.verikooridinat_id}}-{{user.istektalep_tarihi}}</li>
+        <a href="javascript:toggleDiv('istekdiv');" style="padding: 5px 10px;">İstek Listesi Göster/Kapat</a>
+        <div id="istekdiv" style="display:none;">
+          {% for item in istek %}
+                <li class="list-group-item">{{item.id}}-{{item.adi}}-{{item.isteksahibi_id}}-{{item.verikoordinat_id}}-<a href="/edit_istek/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
         {% endfor %}
+        </div>
 
 
-        <div id="left">
+         <!--İstek Ekleme-->
+         <div id="left">
          <form method="post" action="/post_istek">
                <label>İstek Sahibi ID:</label>
                <select id="isteksahibi_id" name="isteksahibi_id">
@@ -223,6 +161,82 @@ Our  Custom Title
          </form>
 
          </div>
+
+
+
+
+         <!-- This part create drop-down selectionlist-->
+         <div>
+         <form method="post" action="/post_birim">
+             <select name="birim_adi">
+             {% for p in birim %}
+                <option value="{{ p.birim_adi }}">{{ p.birim_adi }}</option>
+             {% endfor %}
+             </select>
+             <input type="submit" />
+          </form>
+          </div>
+     </div>
+
+     <div id="left">
+         <form method="post" action="/post_veriformat">
+               <label>Veri Format Adı:</label>
+               <input id="veriformat_adi" name="veriformat_adi" type="text" />
+               <label>Veri Format Kodu:</label>
+               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
+             <input type="submit" />
+         </form>
+     </div>
+     {% for user in veriFormat %}
+                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
+     {% endfor %}
+
+
+      <div id="left">
+         <form method="post" action="/post_verikoordinat">
+               <label>Veri Koordinat ID:</label>
+               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
+               <label>Veri Koordinat Adı:</label>
+               <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" />
+               <label>Veri Koordinat Kodu:</label>
+               <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" />
+             <input type="submit" />
+         </form>
+      </div>
+      {% for user in veriKoordinat %}
+                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
+     {% endfor %}
+
+
+     <div id="left">
+         <form method="post" action="/post_istek">
+               <label>İstek Sahibi ID:</label>
+               <input id="isteksahibi_id" name="isteksahibi_id" type="text" />
+               <label>İstek Adı:</label>
+               <input id="istek_adi" name="istek_adi" type="text" />
+               <label>Veri Format ID</label>
+               <input id="veriformat_id" name="veriformat_id" type="text" />
+               <label>Veri Koordinat ID:</label>
+               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
+               <label>İs Talep Tarihi:</label>
+               <input id="istektalep_tarihi" name="istektalep_tarihi" type="text" />
+               <label>İs Teslim Tarihi:</label>
+               <input id="istekteslim_tarihi" name="istekteslim_tarihi" type="text" />
+               <label>İs Açıklama:</label>
+               <input id="istekaciklama" name="istekaciklama" type="text" />
+               <label>İs Veri Yolu:</label>
+               <input id="istekveriyolu" name="istekveriyolu" type="text" />
+               <input type="submit" />
+
+         </form>
+
+         </div>
+        {% for user in istek %}
+                <li>{{user.id}}-{{user.adi}}-{{user.isteksahibi_id}}-{{user.verikooridinat_id}}-{{user.istektalep_tarihi}}</li>
+        {% endfor %}
+
+
+
         {% for user in istek %}
                 <li>{{user.id}}-{{user.adi}}-{{user.isteksahibi_id}}-{{user.verikooridinat_id}}-{{user.istektalep_tarihi}}</li>
         {% endfor %}
