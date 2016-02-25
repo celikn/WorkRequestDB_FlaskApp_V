@@ -1,0 +1,32 @@
+{% extends "layouts/profilelayout.html" %}
+{% block title %}
+Veri Format Profil
+{% endblock %}
+
+{% block content %}
+
+<body style="padding-top: 120px;" >
+
+    <h2> {{veriFormatSelectedWithID.adi}}-Düzenleme</h2>
+    <div div style = font-size:20px; font-weight:bold; margin-left:150px;>
+            <form  method="post" action="/edit_veriformat/{{id}}">
+            <label>Yeni Veri Format Adı Gir:</label>
+            <input id="veriFormatSelectedWithID_adi" name="veriFormatSelectedWithID_adi" value={{veriFormatSelectedWithID.adi}} type="text" />
+            <label>Yeni Veri Format Kodu Gir:</label>
+            <input id="veriFormatSelectedWithID_kodu" name="veriFormatSelectedWithID_kodu" value={{veriFormatSelectedWithID.kodu}} type="text" />
+            <input type="submit" value="Ekle" />
+            </form>
+    </div>
+
+    <h2 style="color:red;"> {{veriFormatSelectedWithID.adi}}-Silme</h2>
+    <div id="sil">
+             <form action="{{ url_for('delete_veriformat', id=id ) }}" method="POST">
+                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+                <input type="submit" value="Sil -- {{veriFormatSelectedWithID.adi}}" />
+             </form>
+
+    </div>
+
+
+</body>
+{% endblock %}

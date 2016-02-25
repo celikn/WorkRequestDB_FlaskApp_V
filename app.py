@@ -231,8 +231,34 @@ def delete_istek(id):
         return redirect(url_for('index'))
 
 
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+@app.route('/edit_veriformat/<id>',methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
+def edit_veriformat(id):
+    birim=Birim.query.all()
+    veriFormatSelectedWithID=db.session.query(VeriFormat).filter(VeriFormat.id==id).first()
+    #birimtest=str(db.session.query(Birim).filter(Birim.id == id).first())
+    #print (birimtest)
+    if request.method == 'POST':
+          adi = request.form['veriFormatSelectedWithID_adi']
+          veriFormatSelectedWithID.adi = adi
+          kodu = request.form['veriFormatSelectedWithID_kodu']
+          veriFormatSelectedWithID.kodu = kodu
+          db.session.commit()
+          return render_template('veriformatprofile.html',veriFormatSelectedWithID=veriFormatSelectedWithID,id = id)
+    else:
+        return render_template('veriformatprofile.html',veriFormatSelectedWithID=veriFormatSelectedWithID,id = id)
 
+@app.route('/delete_veriformat/<id>',methods = ['POST'])
+def delete_veriformat(id):
+    if request.method == 'POST':
+         VeriFormat.query.filter(VeriFormat.id == id).delete()
+         db.session.commit()
+         flash('Entry was deleted')
+         return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
 
+################################################################
 
 @app.route('/post_isteksahibi', methods=['POST'])
 def post_isteksahibi():

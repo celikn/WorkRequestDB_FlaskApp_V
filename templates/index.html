@@ -156,11 +156,33 @@ Our  Custom Title
                <input id="istekaciklama" name="istekaciklama" type="text" />
                <label>İs Veri Yolu:</label>
                <input id="istekveriyolu" name="istekveriyolu" type="text" />
-               <input type="submit" />
+               <input type="submit" value="Ekle" />
 
          </form>
 
          </div>
+
+          <!--Veri Format Listesi-->
+
+        <a href="javascript:toggleDiv('veriformatdiv');" style="padding: 5px 10px;">Veri Format Listesi Göster/Kapat</a>
+        <div id="veriformatdiv" style="display:none;">
+          {% for item in veriFormat %}
+                <li class="list-group-item">{{item.id}}-{{item.adi}}-{{item.kodu}}-<a href="/edit_veriformat/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
+        {% endfor %}
+        </div>
+
+                      <!--Veri Format Ekleme-->
+
+         <div id="left">
+         <form method="post" action="/post_veriformat">
+               <label>Veri Format Adı:</label>
+               <input id="veriformat_adi" name="veriformat_adi" type="text" />
+               <label>Veri Format Kodu:</label>
+               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
+             <input type="submit" value="Ekle" />
+         </form>
+     </div>
+
 
 
 
@@ -178,18 +200,7 @@ Our  Custom Title
           </div>
      </div>
 
-     <div id="left">
-         <form method="post" action="/post_veriformat">
-               <label>Veri Format Adı:</label>
-               <input id="veriformat_adi" name="veriformat_adi" type="text" />
-               <label>Veri Format Kodu:</label>
-               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
-             <input type="submit" />
-         </form>
-     </div>
-     {% for user in veriFormat %}
-                <li>{{user.id}}-{{user.adi}}-{{user.kodu}}</li>
-     {% endfor %}
+
 
 
       <div id="left">
