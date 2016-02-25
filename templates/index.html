@@ -68,7 +68,7 @@ Our  Custom Title
          <div id="left">
          <form method="post" action="/post_birim">
                <label>Birim Adı:</label>
-               <input id="birim_adi" name="birim_adi" type="text" />
+               <input id="birim_adi" name="birim_adi" type="text" required placeholder="Birim Adı Giriniz" oninvalid="this.setCustomValidity('Birim bilgisi boş görünüyor!!')">
                <input type="submit" value="Ekle"/>
            </form>
 
@@ -104,9 +104,9 @@ Our  Custom Title
                {% endfor %}
                </select>
                <label>İstek Sahibi Adı:</label>
-               <input id="isteksahibi_adi" name="isteksahibi_adi" type="text" />
+               <input id="isteksahibi_adi" name="isteksahibi_adi" type="text" required placeholder="Ad Giriniz" oninvalid="this.setCustomValidity('Kişi adı bilgisi boş görünüyor!!')"/>
                <label>İstek Sahibi Soyadı:</label>
-               <input id="isteksahibi_soyadi" name="isteksahibi_soyadi" type="text" />
+               <input id="isteksahibi_soyadi" name="isteksahibi_soyadi" type="text" required placeholder="Soyad Adı Giriniz" oninvalid="this.setCustomValidity('Kişi soyad bilgisi boş görünüyor!!')" />
              <input type="submit" value="Ekle" />
 
          </form>
@@ -133,7 +133,7 @@ Our  Custom Title
                </select>
 
                <label>İstek Adı:</label>
-               <input id="istek_adi" name="istek_adi" type="text" />
+               <input id="istek_adi" name="istek_adi" type="text"  required placeholder="İş Adı Giriniz" oninvalid="this.setCustomValidity('İş Adı boş görünüyor!!')"/>
 
                <label>Veri Format ID</label>
                <select id="veriformat_id" name="veriformat_id">
@@ -175,7 +175,7 @@ Our  Custom Title
          <div id="left">
          <form method="post" action="/post_veriformat">
                <label>Veri Format Adı:</label>
-               <input id="veriformat_adi" name="veriformat_adi" type="text" />
+               <input id="veriformat_adi" name="veriformat_adi" type="text" required placeholder="Format Adı Giriniz" oninvalid="this.setCustomValidity('Format Adı boş görünüyor!!')" />
                <label>Veri Format Kodu:</label>
                <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
              <input type="submit" value="Ekle" />
@@ -195,12 +195,12 @@ Our  Custom Title
       <div id="left">
          <form method="post" action="/post_verikoordinat">
                <label>Veri Koordinat ID:</label>
-               <input id="verikoordinat_id" name="verikoordinat_id" type="text" />
+               <input id="verikoordinat_id" name="verikoordinat_id" type="text" required placeholder="Koordinat SRS No Giriniz" oninvalid="this.setCustomValidity('SRS No boş görünüyor!!')"/>
                <label>Veri Koordinat Adı:</label>
                <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" />
                <label>Veri Koordinat Kodu:</label>
                <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" />
-             <input type="submit" />
+             <input type="submit" value="Ekle"/>
          </form>
       </div>
 
