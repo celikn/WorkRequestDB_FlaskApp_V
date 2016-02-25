@@ -7,7 +7,7 @@
 
 <body style="padding-top: 120px;" >
 
-    <h2> {{istekSelectedWithID.adi}} -Düzenleme</h2>
+    <p style="color:blue;"> {{istekSelectedWithID.adi}}-İş isteğini Düzenlemektesiniz</p>
     <div div style = font-size:20px>
             <form  method="post" action="/edit_isteksahibi/{{id}}">
             <label>Yeni İstek Adı Gir:</label>
@@ -33,9 +33,9 @@
                {% endfor %}
                </select>
                <label>Yeni İs İstek Talep Tarihi:</label>
-               <input id="istekSelectedWithID_istektalep_tarihi" name="istekSelectedWithID_istektalep_tarihi" value={{istekSelectedWithID.istektalep_tarihi }} type="text" />
+               <input type="date" id="istekSelectedWithID_istektalep_tarihi" name="istekSelectedWithID_istektalep_tarihi" value={{istekSelectedWithID.istektalep_tarihi }} type="text" />
                <label>Yeni İs İstek Teslim Tarihi:</label>
-               <input id="istekSelectedWithID_istekteslim_tarihi" name="istekSelectedWithID_istekteslim_tarihi" value={{istekSelectedWithID.istekteslim_tarihi }} type="text" />
+               <input type="date" id="istekSelectedWithID_istekteslim_tarihi" name="istekSelectedWithID_istekteslim_tarihi" value={{istekSelectedWithID.istekteslim_tarihi }} type="text" />
                <label>Yeni İs İstek Açıklama:</label>
                <input id="istekSelectedWithID_istekaciklama" name="istekSelectedWithID_istekaciklama" value={{istekSelectedWithID.istekaciklama }} type="text" />
                <label>Yeni İs İstek Veri Yolu:</label>
