@@ -329,5 +329,47 @@ def post_istek():
      db.session.commit()
      return redirect(url_for('index'))
 
+
+
+##Add Log Rulesss
+cdm_create_log_table='''CREATE TABLE istek_log
+(
+  id serial NOT NULL,
+  istek_id integer ,
+  theaction character(1),
+  changetime timestamp without time zone DEFAULT now(),
+  CONSTRAINT log_table_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE istek_log
+  OWNER TO postgres;
+'''
+
+cdm_insert='''CREATE OR REPLACE RULE istek_insert_log AS
+    ON INSERT TO istek DO INSERT INTO istek_log (istek_id,theaction)
+  VALUES (new.id,'I'::bpchar);'''
+
+cdm_delete='''CREATE OR REPLACE RULE istek_delete_log AS
+    ON DELETE TO istek DO  INSERT INTO istek_log (istek_id, theaction)
+  VALUES (old.id, 'D'::bpchar);'''
+
+cdm_update='''CREATE OR REPLACE RULE istek_update_log AS
+    ON UPDATE TO istek DO  INSERT INTO istek_log (istek_id, theaction)
+  VALUES (old.id, 'U'::bpchar);'''
+
+##Checks if log table exists
+if db.engine.dialect.has_table(db.engine, "istek_log"):
+    print("table already there, tablo zaten mevcut")
+    pass
+else:
+    result = db.engine.execute(cdm_create_log_table)
+    #Executes rules
+    rule_delete_istek = db.engine.execute(cdm_delete)
+    rule_update_istek = db.engine.execute(cdm_update)
+    rule_insert_istek = db.engine.execute(cdm_insert)
+
+
 if __name__=="__main__":
     app.run()
