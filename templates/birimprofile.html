@@ -19,8 +19,8 @@ Birim Profil
 
     <h2 style="color:red;"> {{birimSelectedWithID.birim_adi}}-Silme</h2>
     <div id="sil">
-             <form action="{{ url_for('delete_birim', id=id ) }}" method="POST">
-                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+             <form action="{{ url_for('delete_birim', id=id ) }}" method="POST" onsubmit="ConfirmDelete()">
+                <input type="hidden" name="_method" value="POST" />
                 <input type="submit" value="Sil -- {{birimSelectedWithID.birim_adi}}" />
              </form>
 

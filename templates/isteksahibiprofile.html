@@ -33,8 +33,8 @@
 
     <h2 style="color:red;"> {{istekSahibiSelectedWithID.adi}} {{istekSahibiSelectedWithID.soyadi}} -Silme</h2>
     <div id="sil">
-             <form action="{{ url_for('delete_isteksahibi', id=id ) }}" method="POST">
-                <input type="hidden" name="_method"  Onclick="ConfirmDelete()" value="POST" />
+             <form action="{{ url_for('delete_isteksahibi', id=id ) }}" method="POST" onsubmit="ConfirmDelete()">
+                <input type="hidden" name="_method"  value="POST" />
                 <input type="submit" value="Sil -- {{istekSahibiSelectedWithID.adi}} {{istekSahibiSelectedWithID.soyadi}} "/>
              </form>
 
