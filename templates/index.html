@@ -98,7 +98,7 @@ Our  Custom Title
         <div>
          <form method="post" action="/post_isteksahibi">
                <label>İstek Sahibi Birim ID:</label>
-               <select id="isteksahibi_birim_id" name="isteksahibi_birim_id">
+               <select id="isteksahibi_birim_id" name="isteksahibi_birim_id" >
                {% for item in birim %}
                    <option value="{{item.id}}">{{item.birim_adi}}</option>
                {% endfor %}
@@ -153,9 +153,9 @@ Our  Custom Title
                <label>İs Teslim Tarihi:</label>
                <input type="date" id="istekteslim_tarihi" name="istekteslim_tarihi" type="text" />
                <label>İs Açıklama:</label>
-               <input id="istekaciklama" name="istekaciklama" type="text" />
+               <input id="istekaciklama" name="istekaciklama" type="text" required placeholder="Açıklama Giriniz" />
                <label>İs Veri Yolu:</label>
-               <input id="istekveriyolu" name="istekveriyolu" type="text" />
+               <input id="istekveriyolu" name="istekveriyolu" type="text" required placeholder="Dosya Uzantısını Giriniz" />
                <input type="submit" value="Ekle" />
 
          </form>
@@ -177,7 +177,7 @@ Our  Custom Title
                <label>Veri Format Adı:</label>
                <input id="veriformat_adi" name="veriformat_adi" type="text" required placeholder="Format Adı Giriniz" oninvalid="this.setCustomValidity('Format Adı boş görünüyor!!')" />
                <label>Veri Format Kodu:</label>
-               <input id="veriformat_kodu" name="veriformat_kodu" type="text" />
+               <input id="veriformat_kodu" name="veriformat_kodu" type="text" required placeholder="Format Kodunu Giriniz" />
              <input type="submit" value="Ekle" />
          </form>
      </div>
@@ -197,9 +197,9 @@ Our  Custom Title
                <label>Veri Koordinat ID:</label>
                <input id="verikoordinat_id" name="verikoordinat_id" type="text" required placeholder="Koordinat SRS No Giriniz" oninvalid="this.setCustomValidity('SRS No boş görünüyor!!')"/>
                <label>Veri Koordinat Adı:</label>
-               <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" />
+               <input id="verikoordinat_adi" name="verikoordinat_adi" type="text" required placeholder="Koordinat Adını Giriniz" />
                <label>Veri Koordinat Kodu:</label>
-               <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" />
+               <input id="verikoordinat_kodu" name="verikoordinat_kodu" type="text" required placeholder="Koordinat Kodunu Giriniz" />
              <input type="submit" value="Ekle"/>
          </form>
       </div>
