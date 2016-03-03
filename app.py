@@ -365,7 +365,7 @@ if db.engine.dialect.has_table(db.engine, "istek"):
         try:
             rule_delete_istek = db.engine.execute(cdm_delete)
             rule_update_istek = db.engine.execute(cdm_update)
-            #rule_insert_istek = db.engine.execute(cdm_insert)
+            rule_insert_istek = db.engine.execute(cdm_insert)
         except:
             pass
     else:
@@ -373,7 +373,7 @@ if db.engine.dialect.has_table(db.engine, "istek"):
         #Executes rules
         rule_delete_istek = db.engine.execute(cdm_delete)
         rule_update_istek = db.engine.execute(cdm_update)
-        #rule_insert_istek = db.engine.execute(cdm_insert)
+        rule_insert_istek = db.engine.execute(cdm_insert)
 else:
     pass
 
