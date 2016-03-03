@@ -70,7 +70,7 @@ class VeriKoordinat(db.Model):
 
 
 class Istek(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer,db.Sequence('istek_id_seq', start=1, increment=1),primary_key=True)
     adi=db.Column(db.String(255))
     isteksahibi_id = db.Column(db.Integer, db.ForeignKey('istek_sahibi.id'))
     veriformat_id= db.Column(db.Integer, db.ForeignKey('veri_format.id'))
@@ -335,7 +335,7 @@ if db.engine.dialect.has_table(db.engine, "istek"):
     cdm_create_log_table='''CREATE TABLE istek_log
     (
       id serial NOT NULL,
-      istek_id integer ,
+      current_istek_id integer ,
       theaction character(1),
       changetime timestamp without time zone DEFAULT now(),
       CONSTRAINT log_table_pkey PRIMARY KEY (id)
@@ -348,15 +348,15 @@ if db.engine.dialect.has_table(db.engine, "istek"):
     '''
 
     cdm_insert='''CREATE OR REPLACE RULE istek_insert_log AS
-        ON INSERT TO istek DO INSERT INTO istek_log (istek_id,theaction)
+        ON INSERT TO istek DO INSERT INTO istek_log (current_istek_id,theaction)
       VALUES (new.id,'I'::bpchar);'''
 
     cdm_delete='''CREATE OR REPLACE RULE istek_delete_log AS
-        ON DELETE TO istek DO  INSERT INTO istek_log (istek_id, theaction)
+        ON DELETE TO istek DO  INSERT INTO istek_log (current_istek_id, theaction)
       VALUES (old.id, 'D'::bpchar);'''
 
     cdm_update='''CREATE OR REPLACE RULE istek_update_log AS
-        ON UPDATE TO istek DO  INSERT INTO istek_log (istek_id, theaction)
+        ON UPDATE TO istek DO  INSERT INTO istek_log (current_istek_id, theaction)
       VALUES (old.id, 'U'::bpchar);'''
 
     ##Checks if log table exists
@@ -365,7 +365,7 @@ if db.engine.dialect.has_table(db.engine, "istek"):
         try:
             rule_delete_istek = db.engine.execute(cdm_delete)
             rule_update_istek = db.engine.execute(cdm_update)
-            rule_insert_istek = db.engine.execute(cdm_insert)
+            #rule_insert_istek = db.engine.execute(cdm_insert)
         except:
             pass
     else:
@@ -373,7 +373,7 @@ if db.engine.dialect.has_table(db.engine, "istek"):
         #Executes rules
         rule_delete_istek = db.engine.execute(cdm_delete)
         rule_update_istek = db.engine.execute(cdm_update)
-        rule_insert_istek = db.engine.execute(cdm_insert)
+        #rule_insert_istek = db.engine.execute(cdm_insert)
 else:
     pass
 
