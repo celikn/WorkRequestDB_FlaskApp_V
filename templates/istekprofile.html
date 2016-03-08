@@ -16,7 +16,7 @@
             <!--<input id="istekSelectedWithID_isteksahibi_id" name="istekSelectedWithID_isteksahibi_id" value={{istekSelectedWithID.isteksahibi_id}} type="text" />-->
             <select id="istekSelectedWithID_isteksahibi_id" name="istekSelectedWithID_isteksahibi_id">
                {% for item in istekSahibi %}
-                   <option value="{{item.id}}">{{item.isteksahibi_id}}-{{item.soyadi}}</option>
+                   <option value="{{item.id}}">{{item.adi}}-{{item.soyadi}}</option>
                {% endfor %}
             </select>
             <label>Yeni Veri Format:</label>

@@ -114,11 +114,18 @@
 
          <!--İstek Listesi-->
 
+
+
         <a href="javascript:toggleDiv('istekdiv');">İstek Listesi Göster/Kapat</a>
         <div id="istekdiv" style="display:none;">
           {% for item in istek %}
-                <li class="list-group-item">{{item.id}}-{{item.adi}}-{{item.isteksahibi_id}}-{{item.verikoordinat_id}}- {{item.istekaciklama}}<a href="/edit_istek/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
-        {% endfor %}
+           {% for item2 in istekSahibi %}
+           {% if item.isteksahibi_id== item2.id%}
+                <li class="list-group-item">{{item.id}}--{{item.adi}}-{{item.isteksahibi_id}}-{{item2.adi }}- {{item2.soyadi }}- -{{item.verikoordinat_id}}- {{item.istekaciklama}}<a href="/edit_istek/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
+
+            {% endif %}
+          {% endfor %}
+          {% endfor %}
         </div>
 
 
