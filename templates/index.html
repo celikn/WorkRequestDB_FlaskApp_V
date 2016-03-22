@@ -48,7 +48,7 @@
      <!--Birim Listesi-->
     <a href="javascript:toggleDiv('birimdiv');" >Birim Listesini Göster/Kapat</a>
     <div id="birimdiv" style="display:none;">
-               {% for item in birim %}
+               {% for item in birim |sort(attribute='birim_adi')%}
 
                 <li class="list-group-item">{{item.id}}-{{item.birim_adi}}- <a href="/edit_birim/{{item.id}}"><button  type="button">Düzenle/Sil</button></a> </li>
            {% endfor %}
@@ -118,10 +118,12 @@
 
         <a href="javascript:toggleDiv('istekdiv');">İstek Listesi Göster/Kapat</a>
         <div id="istekdiv" style="display:none;">
+
           {% for item in istek %}
            {% for item2 in istekSahibi %}
            {% if item.isteksahibi_id== item2.id%}
-                <li class="list-group-item">{{item.id}}--{{item.adi}}-{{item.isteksahibi_id}}-{{item2.adi }}- {{item2.soyadi }}- -{{item.verikoordinat_id}}- {{item.istekaciklama}}<a href="/edit_istek/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
+
+                <li class="list-group-item">{{item.id}}-{{item.adi}}-<span style="color:green">{{item.isteksahibi_id}}-{{item2.adi }}-{{item2.soyadi }}</span>- -{{item.verikoordinat_id}}- {{item.istekaciklama}}<a href="/edit_istek/{{item.id}}"><button  type="button">Düzenle/Sil</button></a></li>
 
             {% endif %}
           {% endfor %}
